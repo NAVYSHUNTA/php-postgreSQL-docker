@@ -1,0 +1,35 @@
+version: '3'
+services:
+  php_container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php_container
+    volumes:
+      - ./../src:/var/www/html
+    ports:
+      - 8080:80
+    depends_on:
+      - pgsql_container
+
+  pgsql_container:
+    image: postgres:11.19-alpine
+    container_name: pgsql
+    volumes:
+      - ./../db/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - 5432:5432
+
+  pgadmin_container:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    volumes:
+      - ./../pgadmin/data:/var/lib/pgadmin
+    ports:
+      - "8081:80"

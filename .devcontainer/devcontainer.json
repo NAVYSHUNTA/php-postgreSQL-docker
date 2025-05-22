@@ -1,0 +1,7 @@
+{
+    "name": "PHP + PostgreSQL DevContainer",
+    "dockerComposeFile": "./docker-compose.yml",
+    "service": "php_container",
+    "workspaceFolder": "/var/www/html",
+    "postCreateCommand": "composer install || true"
+}
