@@ -3,5 +3,13 @@
     "dockerComposeFile": "./docker-compose.yml",
     "service": "php_container",
     "workspaceFolder": "/var/www/html",
-    "postCreateCommand": "composer install || true"
+    "postCreateCommand": "composer install || true",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "oderwat.indent-rainbow",
+                "bmewburn.vscode-intelephense-client"
+            ]
+        }
+    }
 }
